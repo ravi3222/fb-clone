@@ -1,3 +1,3 @@
 # Facebook React Clone
 
-![header-image](docs/images/fb-header.png)
+![feed-image](docs/images/fb-feed.png)

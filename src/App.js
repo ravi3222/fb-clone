@@ -1,11 +1,16 @@
 import React from "react";
 import "./app.css";
-import Header from "./components/header";
+import { Feed, Header, Sidebar } from "./components";
 
 function App() {
   return (
     <div className="app">
       <Header />
+
+      <div className="app__body">
+        <Sidebar />
+        <Feed />
+      </div>
     </div>
   );
 }
