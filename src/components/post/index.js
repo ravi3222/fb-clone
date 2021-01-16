@@ -12,7 +12,7 @@ function Post({ profilePic, image, username, timestamp, message }) {
         <Avatar src={profilePic} className="post__avatar" />
         <div className="post__topInfo">
           <h3>{username}</h3>
-          <p>{timestamp}</p>
+          <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
         </div>
       </div>
       <div className="post__bottom">
@@ -28,11 +28,11 @@ function Post({ profilePic, image, username, timestamp, message }) {
         </div>
         <div className="post__option">
           <ChatBubbleOutlinedIcon />
-          <p>Like</p>
+          <p>Comment</p>
         </div>
         <div className="post__option">
           <NearMeIcon />
-          <p>Like</p>
+          <p>Share</p>
         </div>
       </div>
     </div>

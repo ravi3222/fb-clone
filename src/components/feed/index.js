@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MessageSender from "../messageSender";
 import Post from "../post";
 import StoryReel from "../storyReel";
 import "./styles/feed.css";
+import db from "../../firebase";
 
 export default function Feed() {
+  const [posts, setPosts] = useState([]);
+  console.log("Initial Posts", posts);
+
+  useEffect(() => {
+    db.collection("posts").onSnapshot((snapshot) =>
+      setPosts(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+    );
+
+    console.log("Final Posts", posts);
+    console.log("database", db.collection("posts").get());
+  }, []);
+
   return (
     <div className="feed">
       <StoryReel />
       <MessageSender />
 
-      <Post
+      {posts.map((post) => (
+        <Post
+          key={post.id}
+          profilePic={post.data.profilePic}
+          message={post.data.message}
+          timestamp={post.data.timestamp}
+          username={post.data.username}
+          image={post.data.image}
+        />
+      ))}
+
+      {/* <Post
         profilePic="https://scontent.fixr3-1.fna.fbcdn.net/v/t1.0-9/115991963_319563289404634_7380135227400934603_o.jpg?_nc_cat=1&ccb=2&_nc_sid=09cbfe&_nc_ohc=gzKf1Oqy2XwAX8F4Fz8&_nc_ht=scontent.fixr3-1.fna&oh=ad03f3e7f2950d47f7041235545e9ea3&oe=5FDC9681"
         message="Badrinath Dham after first Snowfall, What a beauty 🥰🥰"
         timestamp="35 m"
@@ -30,7 +54,7 @@ export default function Feed() {
         timestamp="timestamp"
         username="RKashyap"
         image="https://i.pinimg.com/originals/56/f1/c7/56f1c7b7a4307ac90fe00cdc41949118.jpg"
-      />
+      /> */}
     </div>
   );
 }

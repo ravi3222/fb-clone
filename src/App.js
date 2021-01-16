@@ -1,13 +1,15 @@
 import React from "react";
 import "./App.css";
-import { Feed, Header, Sidebar, Widgets } from "./components";
+import { Feed, Header, Login, Sidebar, Widgets } from "./components";
+import { useStateValue } from "./context/StateProvider";
 
 function App() {
-  const user = "ravi";
+  // const user = null;
+  const [{ user }, dispatch] = useStateValue();
   return (
     <div className="app">
       {!user ? (
-        <h1>Login</h1>
+        <Login />
       ) : (
         <>
           <Header />

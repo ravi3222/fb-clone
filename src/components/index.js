@@ -6,3 +6,4 @@ export { default as Story } from "./story";
 export { default as MessageSender } from "./messageSender";
 export { default as Post } from "./post";
 export { default as Widgets } from "./widgets";
+export { default as Login } from "./login";
