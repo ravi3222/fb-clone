@@ -1,16 +1,24 @@
 import React from "react";
 import "./App.css";
-import { Feed, Header, Sidebar } from "./components";
+import { Feed, Header, Sidebar, Widgets } from "./components";
 
 function App() {
+  const user = "ravi";
   return (
     <div className="app">
-      <Header />
+      {!user ? (
+        <h1>Login</h1>
+      ) : (
+        <>
+          <Header />
 
-      <div className="app__body">
-        <Sidebar />
-        <Feed />
-      </div>
+          <div className="app__body">
+            <Sidebar />
+            <Feed />
+            <Widgets />
+          </div>
+        </>
+      )}
     </div>
   );
 }
